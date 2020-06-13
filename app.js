@@ -8,10 +8,13 @@ const path = require('path');
 const app = express();
 
 // Templete engine
-app.engine('handlebars', exphbs);
+app.engine('handlebars', exphbs({
+    extname: '.handlebars',
+    defaultLayout: null
+}));
 app.set('view engine', 'handlebars');
 
-app.use('/public', express.static(path.join(__dirname + 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
