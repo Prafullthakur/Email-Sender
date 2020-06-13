@@ -8,20 +8,20 @@ const path = require('path');
 const app = express();
 
 // Templete engine
-app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs);
+app.set('view engine', 'handlebars');
+
+app.use('/public', express.static(path.join(__dirname + 'public')));
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/public', express.static(path.join(__dirname + 'public')));
-
 app.get('/', (req, res) => {
     res.render('contact');
 });
 
-const Port = 8000;
+const Port = 3000;
 
 app.listen(Port, () => {
     console.log(`Server started on Port: ${Port}`);
