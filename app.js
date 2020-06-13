@@ -43,15 +43,15 @@ app.post('/send', (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'process.env.EMAIL',
-            pass: 'process.env.PASS'
+            user: process.env.EMAIL,
+            pass: process.env.PASS
         }
     })
 
     // Step2
     let mailOption = {
         from: 'parfullchauhan49@gmail.com',
-        to: 'princevatsal@gmail.com',
+        to: 'princevatsal@gmail.com , sarthakguptamailbox@gmail.com',
         subject: 'Testing with node',
         text: 'It works',
         html: output
@@ -63,6 +63,7 @@ app.post('/send', (req, res) => {
             console.log(err);
         } else {
             console.log('Email Sent...');
+            res.render('contact', { msg: 'Email Sent' })
         }
     });
 });
